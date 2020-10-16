@@ -8,6 +8,8 @@ const app = express();
 app.engine("handlebars", expHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+app.use(express.static("public"));
+
 app.get('/', (req, res) => {
     res.render('index');
 });
