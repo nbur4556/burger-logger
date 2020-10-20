@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
 });
 
 // API CALLS
-
 app.get('/api/burgers', (req, res) => {
     orm.selectAll(data => {
         console.log(data);
