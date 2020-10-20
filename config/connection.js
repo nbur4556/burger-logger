@@ -1,19 +1,27 @@
 const mysql = require('mysql');
-// const config = require('./config.json');
+
+const connectVars = new Array();
+
+try {
+    connectVars.push(process.env.CLEARDB_HOST);
+    connectVars.push(process.env.CLEARDB_USER);
+    connectVars.push(process.env.CLEARDB_PASSWORD);
+    connectVars.push(process.env.CLEARDB_DATABASE);
+}
+catch {
+    const config = require('./config.json');
+    connectVars.push(config.host);
+    connectVars.push(config.user);
+    connectVars.push(config.password);
+    connectVars.push(config.database);
+}
 
 const connection = mysql.createConnection({
-    host: process.env.CLEARDB_HOST,
-    user: process.env.CLEARDB_USER,
-    password: process.env.CLEARDB_PASSWORD,
-    database: process.env.CLEARDB_DATABASE
+    host: connectVars[0],
+    user: connectVars[1],
+    password: connectVars[2],
+    database: connectVars[3]
 });
-
-// const connection = mysql.createConnection({
-//     host: config.host,
-//     user: config.user,
-//     password: config.password,
-//     database: config.database
-// });
 
 connection.connect(err => {
     if (err) throw err;
