@@ -16,13 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
+    console.log('hello page');
     res.render('index');
 });
 
 // API CALLS
 app.get('/api/burgers', (req, res) => {
+    console.log('hello burgers');
+
     orm.selectAll(data => {
-        console.log(data);
         res.json(data);
     });
 });
