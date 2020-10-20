@@ -28,9 +28,9 @@ app.get('/api/burgers', (req, res) => {
     });
 });
 
-// app.post('/api/add_burger', (req, res) => {
-
-// });
+app.post('/api/new_burger', (req, res) => {
+    orm.create("burger_name", req.body.burger_name);
+});
 
 app.listen(PORT, () => {
     console.log(`listening on localhost:${PORT}`);

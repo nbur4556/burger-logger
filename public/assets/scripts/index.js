@@ -20,5 +20,12 @@ function populateOrders() {
 function placeOrder() {
     let burgerName = $('#burger-input').val();
 
-    $('.order-list').append(`<li>${burgerName}</li>`);
+    // Send burger to database
+    $.ajax({
+        url: 'api/new_burger',
+        type: 'POST',
+        data: {
+            burger_name: burgerName
+        }
+    });
 }
