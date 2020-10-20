@@ -12,6 +12,11 @@ app.use(express.static("public"));
 
 app.get('/', (req, res) => {
     res.render('index');
+
+    // Test Query
+    connection.query('SELECT * FROM burgers', (err, data) => {
+        console.log(data);
+    });
 });
 
 app.listen(PORT, () => {
