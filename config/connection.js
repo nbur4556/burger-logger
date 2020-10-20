@@ -2,11 +2,10 @@ const mysql = require('mysql');
 const config = require('./config.json');
 
 const connection = mysql.createConnection({
-    host: config.host,
-    port: config.port,
-    user: config.user,
-    password: config.password,
-    database: config.database
+    host: process.env.CLEARDB_HOST || config.host,
+    user: process.env.CLEARDB_USER || config.user,
+    password: process.env.CLEARDB_PASSWORD || config.password,
+    database: process.env.CLEARDB_DATABASE || config.database
 });
 
 connection.connect(err => {
