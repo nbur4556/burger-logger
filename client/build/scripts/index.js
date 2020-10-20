@@ -1,4 +1,6 @@
 $(document).ready(() => {
+    console.log("hello world");
+
     $('#place-order').click(placeOrder);
 
     populateOrders();
