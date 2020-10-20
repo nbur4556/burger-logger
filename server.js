@@ -1,5 +1,6 @@
 const express = require('express');
 const expHandlebars = require('express-handlebars');
+const connection = require('./config/connection');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
