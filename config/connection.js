@@ -18,6 +18,12 @@ const connection = mysql.createConnection({
 connection.connect(err => {
     if (err) throw err;
     console.log("connected to database");
+
+    // Test query
+    connection.query('SELECT * FROM burgers', (err, data) => {
+        if (err) throw err;
+        console.log(data);
+    });
 });
 
 module.exports = connection;
