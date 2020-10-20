@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
 
 connection.connect(err => {
     if (err) throw err;
-    console.log("connected to database");
+    console.log("connected to database with table burgers");
 });
 
 module.exports = connection;
