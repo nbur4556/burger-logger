@@ -19,13 +19,18 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+// API CALLS
+
 app.get('/api/burgers', (req, res) => {
-    console.log('Getting burgers');
     orm.selectAll(data => {
         console.log(data);
         res.json(data);
     });
 });
+
+// app.post('/api/add_burger', (req, res) => {
+
+// });
 
 app.listen(PORT, () => {
     console.log(`listening on localhost:${PORT}`);
