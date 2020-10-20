@@ -2,19 +2,19 @@ const mysql = require('mysql');
 let connectVariables = new Array
 
 try {
+    // Deployment Variables
+    connectVariables.push(process.env.CLEARDB_HOST);
+    connectVariables.push(process.env.CLEARDB_USER);
+    connectVariables.push(process.env.CLEARDB_PASSWORD);
+    connectVariables.push(process.env.CLEARDB_DATABASE);
+}
+catch {
     // Development Variables
     const config = require('./config.json');
     connectVariables.push(config.host);
     connectVariables.push(config.user);
     connectVariables.push(config.password);
     connectVariables.push(config.database);
-}
-catch {
-    // Deployment Variables
-    connectVariables.push(process.env.CLEARDB_HOST);
-    connectVariables.push(process.env.CLEARDB_USER);
-    connectVariables.push(process.env.CLEARDB_PASSWORD);
-    connectVariables.push(process.env.CLEARDB_DATABASE);
 }
 
 const connection = mysql.createConnection({
