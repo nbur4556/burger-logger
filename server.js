@@ -11,9 +11,8 @@ const orm = new Orm('burgers');
 app.engine("handlebars", expHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-app.use(express.static('client/build'));
-// app.use(express.static("public"));
+// app.use(express.static('client/build'));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
