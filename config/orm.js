@@ -22,9 +22,16 @@ Orm.prototype.selectAll = function (cb = function () { }) {
 
 // Return all values where a data column equals a specific value
 Orm.prototype.selectWhere = function (colName, colValue, cb = function () { }) {
-    connection.query(`SELECT * FROM ?? WHERE ?? = ?`, [this.table, colName, colValue], (err, data) => {
+    connection.query("SELECT * FROM ?? WHERE ?? = ?", [this.table, colName, colValue], (err, data) => {
         if (err) throw err;
         cb(data);
+    });
+}
+
+Orm.prototype.updateWhere = function (colName, colValue, searchName, searchValue, cb = function () { }) {
+    connection.query("UPDATE ?? SET ?? = ? WHERE ?? = ?", [this.table, colName, colValue, searchName, searchValue], (err, data) => {
+        if (err) throw err;
+        this.selectAll(cb);
     });
 }
 
@@ -33,6 +40,6 @@ module.exports = Orm
 // TESTING
 const orm = new Orm('burgers');
 
-orm.create(["burger_name", "is_ready"], ["Italian", 1], data => {
+orm.updateWhere("is_ready", 1, "id", 6, data => {
     console.log(data);
 });
