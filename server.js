@@ -11,14 +11,12 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
 app.get('/', (req, res) => {
-    res.render('index');
-
-    console.log('test logging');
+    // res.render('index');
 
     // Test Query
-    // connection.query('SELECT * FROM burgers', (err, data) => {
-    //     console.log(data);
-    // });
+    connection.query('SELECT * FROM burgers', (err, data) => {
+        res.send(data);
+    });
 });
 
 app.listen(PORT, () => {
