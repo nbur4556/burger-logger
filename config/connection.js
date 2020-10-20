@@ -12,6 +12,11 @@ const connection = mysql.createConnection({
 connection.connect(err => {
     if (err) throw err;
     console.log("connected to database");
+
+    // Test Query
+    connection.query('SELECT * FROM burgers', (err, data) => {
+        console.log(data);
+    });
 });
 
 module.exports = connection;
