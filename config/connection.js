@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-let connectVariables = new Array
+let connectVariables = new Array();
 
 try {
     // Deployment Variables
