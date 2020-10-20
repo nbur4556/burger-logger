@@ -1,10 +1,8 @@
-$(document).ready(() => {
-    console.log("hello world");
+console.log("hello world");
 
-    $('#place-order').click(placeOrder);
+$('#place-order').click(placeOrder);
 
-    populateOrders();
-});
+populateOrders();
 
 function populateOrders() {
     // Get all current burgers from database
