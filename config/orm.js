@@ -35,11 +35,11 @@ Orm.prototype.updateWhere = function (colName, colValue, searchName, searchValue
     });
 }
 
+Orm.prototype.deleteWhere = function (searchName, searchValue, cb = function () { }) {
+    connection.query("DELETE FROM ?? WHERE ?? = ?", [this.table, searchName, searchValue], (err, data) => {
+        if (err) throw err;
+        this.selectAll(cb);
+    });
+}
+
 module.exports = Orm
-
-// TESTING
-const orm = new Orm('burgers');
-
-orm.updateWhere("is_ready", 1, "id", 6, data => {
-    console.log(data);
-});
