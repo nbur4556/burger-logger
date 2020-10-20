@@ -14,23 +14,17 @@ app.set("view engine", "handlebars");
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
-else {
-    app.use(express.static("public"));
-}
 
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    console.log('hello page');
-
     res.render('index');
 });
 
 // API CALLS
 app.get('/api/burgers', (req, res) => {
-    console.log('hello burgers');
-
     orm.selectAll(data => {
         res.json(data);
     });
