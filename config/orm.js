@@ -4,7 +4,7 @@ const Orm = function (table) {
     this.table = table;
 }
 
-// Create a new data column
+// Create a new data row
 Orm.prototype.create = function (colNames, colValues, cb = function () { }) {
     connection.query('INSERT INTO ??(??) VALUES(?)', [this.table, colNames, colValues], (err, data) => {
         if (err) throw err;
@@ -20,7 +20,7 @@ Orm.prototype.selectAll = function (cb = function () { }) {
     });
 }
 
-// Return all values where a data column equals a specific value
+// Return all rows where a data column equals a specific value
 Orm.prototype.selectWhere = function (colName, colValue, cb = function () { }) {
     connection.query("SELECT * FROM ?? WHERE ?? = ?", [this.table, colName, colValue], (err, data) => {
         if (err) throw err;
@@ -28,6 +28,7 @@ Orm.prototype.selectWhere = function (colName, colValue, cb = function () { }) {
     });
 }
 
+// Update rows where a data column equals a specific value
 Orm.prototype.updateWhere = function (colName, colValue, searchName, searchValue, cb = function () { }) {
     connection.query("UPDATE ?? SET ?? = ? WHERE ?? = ?", [this.table, colName, colValue, searchName, searchValue], (err, data) => {
         if (err) throw err;
@@ -35,6 +36,7 @@ Orm.prototype.updateWhere = function (colName, colValue, searchName, searchValue
     });
 }
 
+// Delete rows where a data column equals a specific value
 Orm.prototype.deleteWhere = function (searchName, searchValue, cb = function () { }) {
     connection.query("DELETE FROM ?? WHERE ?? = ?", [this.table, searchName, searchValue], (err, data) => {
         if (err) throw err;
