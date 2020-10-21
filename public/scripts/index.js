@@ -1,25 +1,35 @@
 $(document).ready(() => {
     $('#place-order').click(placeOrder);
-
     populateOrders();
 });
 
 function populateOrders() {
-    $('.order-list').empty();
+    const orderList = $('.order-list');
+    const readyList = $('.ready-list');
 
-    // Get all current burgers from database
+    // Clear lists
+    orderList.empty();
+    readyList.empty();
+
+    // Get all burgers from database
     $.ajax({
         url: '/api/burgers',
         type: "GET"
     }).then(data => {
-        // Append all burgers to order list
         for (let i = 0; i < data.length; i++) {
-            $('.order-list')
-                .append(`<li data-id="${data[i].id}">${data[i].burger_name} ${data[i].is_ready} 
-                <button class="update-btn">Update</button>
-                <button class="delete-btn">Delete</button> </li>`);
+            if (data[i].is_ready === 0) {
+                // Append burgers to order list
+                orderList.append(`<li data-id="${data[i].id}">${data[i].burger_name} ${data[i].is_ready} 
+                    <button class="update-btn">Update</button></li>`);
+            }
+            else {
+                // Append burgers to ready list
+                readyList.append(`<li data-id="${data[i].id}">${data[i].burger_name} ${data[i].is_ready} 
+                    <button class="delete-btn">Delete</button> </li>`);
+            }
         }
 
+        // Add button listeners
         $('.update-btn').click(setOrderReady);
         $('.delete-btn').click(removeOrder);
     });
