@@ -38,6 +38,9 @@ function populateOrders() {
 function placeOrder() {
     let burgerName = $('#burger-input').val();
 
+    // Clear burger input text box
+    $('#burger-input').val("");
+
     // Send burger to database
     $.ajax({
         url: 'api/burgers',
