@@ -17,15 +17,20 @@ function populateOrders() {
         type: "GET"
     }).then(data => {
         for (let i = 0; i < data.length; i++) {
+            let burgerButton = $(`<button data-id=${data[i].id}>`);
+
+            burgerButton.addClass('list-group-item list-group-item-action');
+            burgerButton.text(data[i].burger_name);
+
             if (data[i].is_ready === 0) {
                 // Append burgers to order list
-                orderList.append(`<li data-id="${data[i].id}">${data[i].burger_name}
-                    <button class="update-btn">Update</button></li>`);
+                burgerButton.addClass('update-btn');
+                orderList.append(burgerButton);
             }
             else {
                 // Append burgers to ready list
-                readyList.append(`<li data-id="${data[i].id}">${data[i].burger_name} 
-                    <button class="delete-btn">Delete</button> </li>`);
+                burgerButton.addClass('delete-btn');
+                readyList.append(burgerButton);
             }
         }
 
@@ -59,7 +64,7 @@ function setOrderReady() {
         url: 'api/burgers',
         type: 'PUT',
         data: {
-            id: $(this).parent('li').data('id'),
+            id: $(this).data('id'),
             val: 1
         }
     }).then(data => {
@@ -70,7 +75,7 @@ function setOrderReady() {
 function removeOrder() {
     // Remove burger from database
     $.ajax({
-        url: `api/burgers/${$(this).parent('li').data('id')}`,
+        url: `api/burgers/${$(this).data('id')}`,
         type: 'DELETE'
     }).then(data => {
         populateOrders();
