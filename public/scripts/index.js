@@ -17,25 +17,20 @@ function populateOrders() {
         type: "GET"
     }).then(data => {
         for (let i = 0; i < data.length; i++) {
-            let burgerListItem = $('<li>');
             let burgerButton = $(`<button data-id=${data[i].id}>`);
 
-            burgerButton.addClass('btn btn-secondary');
-
-            burgerListItem.text(data[i].burger_name);
-            burgerListItem.append(burgerButton);
+            burgerButton.addClass('list-group-item list-group-item-action');
+            burgerButton.text(data[i].burger_name);
 
             if (data[i].is_ready === 0) {
                 // Append burgers to order list
-                burgerButton.text('Update');
                 burgerButton.addClass('update-btn');
-                orderList.append(burgerListItem);
+                orderList.append(burgerButton);
             }
             else {
                 // Append burgers to ready list
-                burgerButton.text('Delete');
                 burgerButton.addClass('delete-btn');
-                readyList.append(burgerListItem);
+                readyList.append(burgerButton);
             }
         }
 
