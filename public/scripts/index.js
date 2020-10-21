@@ -5,6 +5,8 @@ $(document).ready(() => {
 });
 
 function populateOrders() {
+    $('.order-list').empty();
+
     // Get all current burgers from database
     $.ajax({
         url: '/api/burgers',
@@ -28,4 +30,6 @@ function placeOrder() {
             burger_name: burgerName
         }
     });
+
+    populateOrders();
 }

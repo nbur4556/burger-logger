@@ -2,7 +2,6 @@ const Orm = require('../config/orm');
 const orm = new Orm('burgers');
 
 module.exports = function (app) {
-
     app.get('/api/burgers', (req, res) => {
         orm.selectAll(data => {
             res.json(data);
