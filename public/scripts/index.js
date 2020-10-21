@@ -17,9 +17,9 @@ function populateOrders() {
         type: "GET"
     }).then(data => {
         for (let i = 0; i < data.length; i++) {
-            let burgerListItem = $(`<li data-id=${data[i].id}>`);
-            let burgerButton = $('<button>');
-            // burgerItem.html(<button class="update-btn btn btn-secondary">Update</button>`)
+            let burgerListItem = $('<li>');
+            let burgerButton = $(`<button data-id=${data[i].id}>`);
+
             burgerButton.addClass('btn btn-secondary');
 
             burgerListItem.text(data[i].burger_name);
@@ -69,7 +69,7 @@ function setOrderReady() {
         url: 'api/burgers',
         type: 'PUT',
         data: {
-            id: $(this).parent('li').data('id'),
+            id: $(this).data('id'),
             val: 1
         }
     }).then(data => {
@@ -80,7 +80,7 @@ function setOrderReady() {
 function removeOrder() {
     // Remove burger from database
     $.ajax({
-        url: `api/burgers/${$(this).parent('li').data('id')}`,
+        url: `api/burgers/${$(this).data('id')}`,
         type: 'DELETE'
     }).then(data => {
         populateOrders();
