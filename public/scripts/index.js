@@ -20,12 +20,12 @@ function populateOrders() {
             if (data[i].is_ready === 0) {
                 // Append burgers to order list
                 orderList.append(`<li data-id="${data[i].id}">${data[i].burger_name}
-                    <button class="update-btn">Update</button></li>`);
+                    <button class="update-btn btn btn-secondary">Update</button></li>`);
             }
             else {
                 // Append burgers to ready list
                 readyList.append(`<li data-id="${data[i].id}">${data[i].burger_name} 
-                    <button class="delete-btn">Delete</button> </li>`);
+                    <button class="delete-btn btn btn-secondary">Delete</button> </li>`);
             }
         }
 
