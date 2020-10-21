@@ -8,17 +8,20 @@ const app = express();
 app.engine("handlebars", expHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// Set middleware
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Render langing page
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-// API CALLS
+// API routes
 require('./routes/api-routes.js')(app);
 
+// Run Server
 app.listen(PORT, () => {
     console.log(`listening on localhost:${PORT}`);
 });

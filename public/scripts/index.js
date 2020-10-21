@@ -17,8 +17,8 @@ function populateOrders() {
         type: "GET"
     }).then(data => {
         for (let i = 0; i < data.length; i++) {
+            // Create burger item
             let burgerButton = $(`<button data-id=${data[i].id}>`);
-
             burgerButton.addClass('list-group-item list-group-item-action');
             burgerButton.text(data[i].burger_name);
 
@@ -54,6 +54,7 @@ function placeOrder() {
             burger_name: burgerName
         }
     }).then(data => {
+        // Re-render lists
         populateOrders();
     });
 }
@@ -68,6 +69,7 @@ function setOrderReady() {
             val: 1
         }
     }).then(data => {
+        // Re-render lists
         populateOrders();
     });
 }
@@ -78,6 +80,7 @@ function removeOrder() {
         url: `api/burgers/${$(this).data('id')}`,
         type: 'DELETE'
     }).then(data => {
+        // Re-render lists
         populateOrders();
     });
 }
