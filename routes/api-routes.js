@@ -8,7 +8,11 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/api/new_burger', (req, res) => {
-        orm.create("burger_name", req.body.burger_name);
+    app.post('/api/burgers', (req, res) => {
+        orm.create('burger_name', req.body.burger_name);
+    });
+
+    app.delete('/api/burgers/:id', (req, res) => {
+        orm.deleteWhere('id', req.params.id);
     });
 }

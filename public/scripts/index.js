@@ -14,7 +14,7 @@ function populateOrders() {
     }).then(data => {
         // Append all burgers to order list
         for (let i = 0; i < data.length; i++) {
-            $('.order-list').append(`<li>${data[i].burger_name}</li>`);
+            $('.order-list').append(`<li>${data[i].burger_name} <button>Delete</button> </li>`);
         }
     });
 }
@@ -24,7 +24,7 @@ function placeOrder() {
 
     // Send burger to database
     $.ajax({
-        url: 'api/new_burger',
+        url: 'api/burgers',
         type: 'POST',
         data: {
             burger_name: burgerName
@@ -32,4 +32,8 @@ function placeOrder() {
     });
 
     populateOrders();
+}
+
+function removeOrder() {
+
 }
