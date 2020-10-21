@@ -14,8 +14,11 @@ function populateOrders() {
     }).then(data => {
         // Append all burgers to order list
         for (let i = 0; i < data.length; i++) {
-            $('.order-list').append(`<li>${data[i].burger_name} <button>Delete</button> </li>`);
+            $('.order-list')
+                .append(`<li data-id="${data[i].id}">${data[i].burger_name} <button class="delete-btn">Delete</button> </li>`);
         }
+
+        $('.delete-btn').click(removeOrder);
     });
 }
 
@@ -34,6 +37,13 @@ function placeOrder() {
     populateOrders();
 }
 
-function removeOrder() {
+function removeOrder(e) {
+    const burgerListItem = e.currentTarget.parentElement;
 
+    $.ajax({
+        url: `api/burgers/${$(burgerListItem).attr("data-id")}`,
+        type: 'DELETE'
+    });
+
+    populateOrders();
 }
