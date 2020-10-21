@@ -17,15 +17,25 @@ function populateOrders() {
         type: "GET"
     }).then(data => {
         for (let i = 0; i < data.length; i++) {
+            let burgerListItem = $(`<li data-id=${data[i].id}>`);
+            let burgerButton = $('<button>');
+            // burgerItem.html(<button class="update-btn btn btn-secondary">Update</button>`)
+            burgerButton.addClass('btn btn-secondary');
+
+            burgerListItem.text(data[i].burger_name);
+            burgerListItem.append(burgerButton);
+
             if (data[i].is_ready === 0) {
                 // Append burgers to order list
-                orderList.append(`<li data-id="${data[i].id}">${data[i].burger_name}
-                    <button class="update-btn btn btn-secondary">Update</button></li>`);
+                burgerButton.text('Update');
+                burgerButton.addClass('update-btn');
+                orderList.append(burgerListItem);
             }
             else {
                 // Append burgers to ready list
-                readyList.append(`<li data-id="${data[i].id}">${data[i].burger_name} 
-                    <button class="delete-btn btn btn-secondary">Delete</button> </li>`);
+                burgerButton.text('Delete');
+                burgerButton.addClass('delete-btn');
+                readyList.append(burgerListItem);
             }
         }
 
