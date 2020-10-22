@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Render langing page
+// Render landing page
 app.get('/', (req, res) => {
     res.render('index');
 });
