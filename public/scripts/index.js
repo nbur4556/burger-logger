@@ -1,6 +1,8 @@
 $(document).ready(() => {
-    $('#place-order').click(placeOrder);
-    populateOrders();
+    console.log(process.env.CLEARDB_DATABASE);
+
+    // $('#place-order').click(placeOrder);
+    // populateOrders();
 });
 
 function populateOrders() {
