@@ -7,6 +7,8 @@
 
 Create and log burger orders. Complete orders and set them to ready. When delivered, delete ready burger orders.
 
+![Burger Order Screenshot](/img/burger-order-screenshot.png)
+
 ## Table of Contents
 
 * [Installation](#Installation)
