@@ -1,7 +1,7 @@
 const express = require('express');
 const expHandlebars = require('express-handlebars');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Set handlebars template and view engine

@@ -9,7 +9,6 @@ try {
     connectVars.push(config.user);
     connectVars.push(config.password);
     connectVars.push(config.database);
-    connectVars.push(3306);
 }
 catch {
     // Push deployment credentials
@@ -17,7 +16,6 @@ catch {
     connectVars.push(process.env.CLEARDB_USER);
     connectVars.push(process.env.CLEARDB_PASSWORD);
     connectVars.push(process.env.CLEARDB_DATABASE);
-    connectVars.push(3306);
 }
 
 // Create connection
@@ -26,7 +24,7 @@ const connection = mysql.createConnection({
     user: connectVars[1],
     password: connectVars[2],
     database: connectVars[3],
-    port: connectVars[4]
+    port: 3306
 });
 
 // Connect
